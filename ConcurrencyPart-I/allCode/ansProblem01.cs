@@ -33,10 +33,8 @@ namespace Problem01
             {
                 fs.Close();
             }
-
             return returnData;
         }
-        
         static long sum(int threadN, int N)
         {
             int dataAmount = 1000000000;
@@ -47,18 +45,16 @@ namespace Problem01
             long result = 0;
             for(index = indexNow ; index < indexCounter ; index++)
             {
-                //Console.Write(Data_Global[index]);
-                if ((((int)Data_Global[index]) & 1) == 0) // %2 //(((int)Data_Global[index]) & 1) //(Data_Global[index] %2)
-                {
+                if ((((int)Data_Global[index]) & 1) == 0) {
                     result -= Data_Global[index];
                 }
                 else if (Data_Global[index] % 3 == 0)
                 {
-                    result += (Data_Global[index] << 1); // *2
+                    result += (Data_Global[index]*2); // *2
                 }
                 else if (Data_Global[index] % 5 == 0)
                 {
-                    result += (Data_Global[index] >> 1); // /2
+                    result += (Data_Global[index]/2); // /2
                 }
                 else if (Data_Global[index] % 7 == 0)
                 {
@@ -66,44 +62,16 @@ namespace Problem01
                 }
                 Data_Global[index] = 0;
             }
-            // Console.WriteLine($"INDEX NOW : {indexNow} INDEXCOUNTER : {indexCounter}");
             return result;  // return for Thread Join
         }
 
         static void workerThread(object num)
         {
+            // Console.WriteLine(num);
             long Sum_Local = 0;
             Sum_Local = sum((int)num, NUM_THREAD); //#threadNumber, all threads
-            Sum_Global+=Sum_Local;
+            Sum_Global += Sum_Local;
         }
-
-
-
-
-        // static long sum(int startTask, int endTask)
-        // {
-        //     for(int index = startTask ; index < endTask ; index++)
-        //     {
-        //         //Console.Write(Data_Global[index]);
-        //         if ((((int)Data_Global[index]) & 1) == 0) // %2 //(((int)Data_Global[index]) & 1) //(Data_Global[index] %2)
-        //         {
-        //             sum_Local[i] -= Data_Global[index];
-        //         }
-        //         else if (Data_Global[index] % 3 == 0)
-        //         {
-        //             sum_Local[i] += (Data_Global[index] << 1); // *2
-        //         }
-        //         else if (Data_Global[index] % 5 == 0)
-        //         {
-        //             sum_Local[i] += (Data_Global[index] >> 1); // /2
-        //         }
-        //         else if (Data_Global[index] % 7 == 0)
-        //         {
-        //             sum_Local[i] += (Data_Global[index] / 3);
-        //         }
-        //         Data_Global[index] = 0;
-        //     }
-        // }
         static void Main(string[] args)
         {
             Stopwatch sw = new Stopwatch();
@@ -128,15 +96,11 @@ namespace Problem01
             /* Start */
             Console.Write("\n\nWorking...\n");
             sw.Start();
-
-            for (int i=0; i<NUM_THREAD; i++)
-            {
+            for (int i=0; i<NUM_THREAD; i++) {
                 threadsArr[i] = new Thread(workerThread);
                 threadsArr[i].Start(i);
             }
-            for (int i=0; i<NUM_THREAD; i++)
-                threadsArr[i].Join();     
-
+            for (int i=0; i<NUM_THREAD; i++) threadsArr[i].Join();     
             sw.Stop();
             Console.WriteLine("Done.");           
             /* STOP */
@@ -144,25 +108,6 @@ namespace Problem01
             /* Result */
             Console.WriteLine("Summation result: {0}", Sum_Global);
             Console.WriteLine("Time used: " + sw.ElapsedMilliseconds.ToString() + "ms");
-
-
-            // //Parallel
-            // int partialData = 10000;
-            // Console.Write("\n\nWorking...\n");
-            // sw.Start();
-
-            // Parallel.For(0,10000, i -> sum(i*(),));
-            // for(int i = 0; i<partialData; i++){
-            //     Sum_Global += sum_Local[i];
-            // } 
-
-            // sw.Stop();
-            // Console.WriteLine("Done.");           
-            // /* STOP */
-
-            // /* Result */
-            // Console.WriteLine("Summation result: {0}", Sum_Global);
-            // Console.WriteLine("Time used: " + sw.ElapsedMilliseconds.ToString() + "ms");
         }
     }
 }

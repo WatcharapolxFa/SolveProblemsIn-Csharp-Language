@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
-ืnamespace Lab_OS_Concurrency02
+
+
+namespace Lab_OS_Concurrency02
 {
 class Program
 {
