@@ -11,7 +11,7 @@ namespace OS_Sync_Ex_01
         static void plus()
         {
             int i ;
-            for (int i = 0; i < 1000001; i++)
+            for (i = 0; i < 1000001; i++)
             {
                 lock (_Lock)
                 {
@@ -22,7 +22,7 @@ namespace OS_Sync_Ex_01
         static void minus()
         {
             int i ;
-            for (int i = 0; i < 1000000; i++)
+            for (i = 0; i < 1000000; i++)
             { 
                 lock (_Lock)
                 {

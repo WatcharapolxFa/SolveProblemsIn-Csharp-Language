@@ -10,7 +10,7 @@ namespace OS_Sync_Ex_01
         static void plus()
         {
             int i ;
-            for (int i = 0; i < 1000001; i++)
+            for (i = 0; i < 1000001; i++)
             {
                 sum += i ;
             }

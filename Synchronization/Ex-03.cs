@@ -13,7 +13,7 @@ namespace OS_Sync_Ex_01
             int i ;
             lock (_Lock)
             {
-                for (int i = 0; i < 1000001; i++)
+                for (i = 0; i < 1000001; i++)
                 {
                     sum += i ;
 
@@ -25,7 +25,7 @@ namespace OS_Sync_Ex_01
             int i ;
             lock (_Lock)
             {
-                for (int i = 0; i < 1000000; i++)
+                for (i = 0; i < 1000000; i++)
                 { 
                     sum -= i ;
                 }
