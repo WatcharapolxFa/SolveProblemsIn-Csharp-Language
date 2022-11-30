@@ -1,7 +1,4 @@
-using System;
-using System.Diagnostics;
 using System.Threading;
-
 namespace OS_Sync_01
 {
     class program
@@ -35,11 +32,14 @@ namespace OS_Sync_01
                     if (allowDid == 1) {
                         Console.Write("Input : ");
                         xx = Console.ReadLine();
-                        if (xx == "exit")
+                        if (xx == "exit") {
                             exitFlag = 1;
-                        else
+                            Console.WriteLine("Thread {0} exit", exitFlag);
+                            allowDid = 3;
+                        } else {
                             x = xx;
                             allowDid = 2;
+                        }
                     }
                 }
             }
